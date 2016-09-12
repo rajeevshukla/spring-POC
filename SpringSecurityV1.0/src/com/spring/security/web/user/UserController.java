@@ -1,4 +1,4 @@
-package com.devstringx.pmt.web.user;
+package com.spring.security.web.user;
 
 import java.io.IOException;
 

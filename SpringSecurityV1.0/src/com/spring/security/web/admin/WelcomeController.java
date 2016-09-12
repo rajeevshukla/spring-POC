@@ -1,4 +1,4 @@
-package com.devstringx.pmt.web.admin;
+package com.spring.security.web.admin;
 
 import org.springframework.stereotype.Controller;
 

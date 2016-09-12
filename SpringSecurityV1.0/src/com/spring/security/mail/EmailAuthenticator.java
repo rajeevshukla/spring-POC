@@ -1,4 +1,4 @@
-package com.devstringx.pmt.mail;
+package com.spring.security.mail;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;

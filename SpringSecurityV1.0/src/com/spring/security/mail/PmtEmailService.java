@@ -1,4 +1,4 @@
-package com.devstringx.pmt.mail;
+package com.spring.security.mail;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +10,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import com.devstringx.pmt.utils.ApplicationUtilities;
+import com.spring.security.utils.ApplicationUtilities;
+
 
 
 public class PmtEmailService {

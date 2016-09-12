@@ -1,4 +1,4 @@
-package com.devstringx.pmt.domain.common;
+package com.spring.security.domain.common;
 
 import java.util.Collection;
 import java.util.Date;

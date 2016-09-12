@@ -1,4 +1,4 @@
-package com.devstringx.pmt.utils;
+package com.spring.security.utils;
 
 import java.io.IOException;
 
@@ -7,13 +7,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.devstringx.pmt.mail.PmtEmailService;
+import com.spring.security.mail.PmtEmailService;
+
 
 @Component
 public class BootLoader {
 
-	@Autowired
-	PmtEmailService pmtEmailService;
+/*	@Autowired
+	PmtEmailService pmtEmailService;*/
 
 	
 	@PostConstruct
