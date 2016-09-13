@@ -34,6 +34,7 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 	private String userDisplayNameFirst;
 	private String userDisplayNameMiddle;
 	private String userDisplayNameLast;
+	private int failureCount;
 
 	@NotBlank
 	@Email
@@ -45,11 +46,7 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 	private String alternateEmail;
 	private Date  lastPasswdChangeDate;
 	private String lastPassword;
-	private String address;
-	private String area;
-	private String city;
-	private String state;
-	private String pincode;
+	
 
 
 	//editable fields
@@ -132,32 +129,6 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 	public String getLastPassword() {
 		return lastPassword;
 	}
-
-	@Column(name="ADDRESS")
-	public String getAddress() {
-		return address;
-	}
-
-	@Column(name="AREA")
-	public String getArea() {
-		return area;
-	}
-
-	@Column(name="CITY")
-	public String getCity() {
-		return city;
-	}
-
-	@Column(name="STATE")
-	public String getState() {
-		return state;
-	}
-
-	@Column(name="PINCODE",length=10)
-	public String getPincode() {
-		return pincode;
-	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -178,26 +149,6 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 		this.lastPassword = lastPassword;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
-
 	@Column(name = "IS_ACNT_NON_EXPD", nullable = false, columnDefinition = "smallint default 1")
 	public boolean isAccountNonExpired() {
 		return isAccountNonExpired;
@@ -208,6 +159,7 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 		return isAccountNonLocked;
 	}
 
+	//overriddent methods
 	@Column(name = "IS_CRED_NON_EXPD", nullable = false, columnDefinition = "smallint default 1")
 	public boolean isCredentialsNonExpired() {
 		return isCredentialsNonExpired;
@@ -229,31 +181,13 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 	}
 
 	
-
-	@Column(name = "COUNT", length=10)
-	public Integer getCount() {
-		return count;
+	public int getFailureCount() {
+		return failureCount;
 	}
 
-	@Column(name="IS_PASSWORD_RESET")
-	public Boolean isPasswordReset() {
-		return passwordReset;
+	public void setFailureCount(int failureCount) {
+		this.failureCount = failureCount;
 	}
-
-	@Column(name="PASSWORD_RESET_VALID_UPTO")
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getResetPasswordLinkValidUpto() {
-		return resetPasswordLinkValidUpto;
-	}
-
-	@Column(name="PASSWORD_RESET_LINK_MAILED_ON")
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getResetPasswordLinkMailedOn() {
-		return resetPasswordLinkMailedOn;
-	}
-
-
-
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -338,6 +272,8 @@ public class UserDetailsDTO extends CommonDetailsDTO implements UserDetails {
 		this.credentialsExpired = credentialsExpired;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "UserDetailsDTO [username=" + username

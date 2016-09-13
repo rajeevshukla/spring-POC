@@ -1,4 +1,4 @@
-package com.spring.security.service.common;
+package com.spring.security.service;
 
 import org.springframework.stereotype.Service;
 
@@ -6,15 +6,11 @@ import org.springframework.stereotype.Service;
 public class CommonService {
 
 	
-	/*@Qualifier("pmtEmailService")
-	@Autowired
-	PmtEmailService emailService;*/
 	
 	
 	 public void registerNewUser(String userName,String emailId){
 
 		 System.out.println("registering..");
-		 //emailService.sendRegistrationEmail(emailId, userName);
 	 
 	 }
 	

@@ -15,9 +15,6 @@ public class ApplicationUtilities {
 		return false;
 	}
 	
-	public static boolean isEmailServiceEnabled(){
-		return Boolean.parseBoolean(getCustomProperty("enableEmailService", "true"));
-	}
 	
 	public static String getHashValue(String param) {
 		ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
