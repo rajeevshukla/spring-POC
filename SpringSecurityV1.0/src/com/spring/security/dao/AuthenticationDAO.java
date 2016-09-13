@@ -29,4 +29,9 @@ public class AuthenticationDAO {
 		System.out.println("Updaing new password");
 	}
 
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	
 }

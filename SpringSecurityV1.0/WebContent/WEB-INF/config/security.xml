@@ -65,11 +65,11 @@
 		<constructor-arg value="256"></constructor-arg>
 	</bean>
 
-	<bean id="authenticationService" class="com.gss.tabkids.service.security.AuthenticationService">
+	<bean id="authenticationService" class="com.spring.security.service.AuthenticationService">
 		<property name="authenticationDAO" ref="authenticationDAO"></property>
 	</bean>
 
-	<bean id="authenticationDAO" class="com.gss.tabkids.persistence.security.AuthenticationDAO">
+	<bean id="authenticationDAO" class="com.spring.security.dao.AuthenticationDAO">
 		<property name="sessionFactory" ref="secSessionFactory"></property>
 	</bean>
 
