@@ -3,7 +3,7 @@
 #Details 
 In this project, we have minimal security configuration, Hard coded username, password in (see 'security.xml') and a hard coded URL that you have manually enter in your browser to test this application. 
 
-#Step to run this application  : 
+#Steps to run this application  : 
 
 1 - Import this project in your eclipse.<br>
 2- Assuming that you must some application server which is capable of running on java 8 and Serlvet 3.1 <br>
