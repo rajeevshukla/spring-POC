@@ -16,14 +16,5 @@ public class AuthenticationController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value="getRegisterPage.htm")
-	public ModelAndView getRegisterPage(){
-		ModelAndView  mav=new  ModelAndView("security/registerPage");
-	
-		
-		return mav;
-	}
-	
 
 }

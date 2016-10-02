@@ -1,7 +1,7 @@
-#SpringSecurityV1.0  
+#SpringSecurityV2.0 (Spring MVC + Spring Security + Database Integration) 
 
-#Details 
-In this project, we have minimal security configuration, Hard coded username, password in (see 'security.xml') and a hard coded URL that you have manually enter in your browser to test this application. 
+#Details  
+In this project, we have minimal security configuration with database , username passwords fetched from database . 
 
 #Steps to run this application  : 
 
