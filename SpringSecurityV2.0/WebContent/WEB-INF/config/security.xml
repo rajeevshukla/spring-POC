@@ -12,20 +12,141 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
 	<context:component-scan base-package="com.spring"></context:component-scan>
 
-<security:http auto-config="true"  pattern="/normal/*"
+	<security:http auto-config="true" pattern="/normal/*"
 		security="none" />
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/admin/*"
 			access="hasRole('ROLE_ADMIN')" />
 	</security:http>
+	<security:http auto-config="true">
+		<!-- <security:intercept-url pattern="/student/**" access="ROLE_STUDENT"/> -->
+		<!-- <security:intercept-url pattern="/teacher/**" access="ROLE_TEACHER"/> -->
+
+		<!-- <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" /> -->
+		<security:intercept-url pattern="/*"
+			access="ROLE_ADMIN,ROLE_TEACHER" />
 
 
-	<security:authentication-manager>
-		<security:authentication-provider>
-		<security:user-service>
-		<security:user name="rajeev" password="abc" authorities="ROLE_ADMIN"/>
-		</security:user-service>
+
+		<security:session-management
+			invalid-session-url="/sessionExpired.htm">
+			<security:concurrency-control
+				expired-url="/sessionExpired.htm" max-sessions="1"
+				error-if-maximum-exceeded="true" />
+
+		</security:session-management>
+		<security:logout invalidate-session="true"
+			success-handler-ref="customLogoutSuccessHandler" delete-cookies="JSESSIONID" />
+
+
+		<security:form-login always-use-default-target="true"
+			authentication-failure-handler-ref="customAuthFailureHandler"
+			authentication-success-handler-ref="customAuthSuccessHandler"
+			login-page="/login.htm"></security:form-login>
+
+	</security:http>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="authProvider">
 		</security:authentication-provider>
 	</security:authentication-manager>
-	
+
+	<bean id="authProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="authenticationService">
+		</property>
+		<property name="passwordEncoder" ref="passwordEncoder"></property>
+	</bean>
+
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg value="256"></constructor-arg>
+	</bean>
+
+	<bean id="authenticationService"
+		class="com.devstringx.pmt.security.AuthenticationService">
+		<property name="authenticationDAO" ref="authenticationDAO"></property>
+	</bean>
+
+	<bean id="authenticationDAO"
+		class="com.devstringx.pmt.security.AuthenticationDAO">
+		<property name="sessionFactory" ref="secSessionFactory"></property>
+	</bean>
+	<bean id="webSecurityExpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<constructor-arg index="0" value="${${db.dbType}.driverClass}"></constructor-arg>
+		<property name="driverClassName">
+			<value>${${db.dbType}.driverClass}</value>
+		</property>
+		<property name="url">
+			<value>${${db.dbType}.connectionUrl}</value>
+		</property>
+		<property name="username">
+			<value>${${db.dbType}.username}</value>
+		</property>
+		<property name="password">
+			<value>${${db.dbType}.password}</value>
+		</property>
+	</bean>
+
+	<bean id="secSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		lazy-init="true">
+		<property name="dataSource">
+			<idref bean="dataSource" />
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.pensar.tabkids.domain.security</value>
+				<value>com.pensar.tabkids.service.ecurity</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- <prop key="hibernate.connection.datasource">java:/comp/env/jdbc/DB2</prop> -->
+				<prop key="hibernate.dialect">${${db.dbType}.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+				<prop key="hibernate.format_sql">true</prop>
+				<!-- <prop key="hibernate.c3p0.min_size">5</prop> <prop key="hibernate.c3p0.max_size">20</prop> 
+					<prop key="hibernate.c3p0.timeout">1800</prop> <prop key="hibernate.c3p0.max_statements">50</prop> -->
+			</props>
+		</property>
+	</bean>
+
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:tabkids.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<bean id="authenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="filterProcessesUrl" value="/j_spring_security_check" />
+		<property name="authenticationSuccessHandler" ref="customAuthSuccessHandler"></property>
+	</bean>
+
+	<bean id="customAuthSuccessHandler"
+		class="com.devstringx.pmt.security.CustomAuthenticationSuccessHandler">
+	</bean>
+
+	<bean id="customAuthFailureHandler"
+		class="com.devstringx.pmt.security.CustomAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login.htm?login_error=1"></property>
+	</bean>
+	<bean id="customLogoutSuccessHandler"
+		class="com.devstringx.pmt.security.CustomLogoutSuccessHandler">
+		<property name="defaultTargetUrl" value="/login.htm"></property>
+	</bean>
+
 </beans>
