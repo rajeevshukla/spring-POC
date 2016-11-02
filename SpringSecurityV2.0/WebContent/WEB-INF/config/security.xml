@@ -15,19 +15,11 @@
 	<security:http auto-config="true" pattern="/normal/*"
 		security="none" />
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/admin/*"
-			access="hasRole('ROLE_ADMIN')" />
-	</security:http>
-	<security:http auto-config="true">
 		<!-- <security:intercept-url pattern="/student/**" access="ROLE_STUDENT"/> -->
 		<!-- <security:intercept-url pattern="/teacher/**" access="ROLE_TEACHER"/> -->
 
-		<!-- <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" /> -->
-		<security:intercept-url pattern="/*"
-			access="ROLE_ADMIN,ROLE_TEACHER" />
-
-
-
+		<security:intercept-url pattern="/admin/**"
+			access="ROLE_ADMIN" />
 		<security:session-management
 			invalid-session-url="/sessionExpired.htm">
 			<security:concurrency-control
@@ -64,13 +56,11 @@
 		<constructor-arg value="256"></constructor-arg>
 	</bean>
 
-	<bean id="authenticationService"
-		class="com.devstringx.pmt.security.AuthenticationService">
+	<bean id="authenticationService" class="com.spring.security.security.AuthenticationService">
 		<property name="authenticationDAO" ref="authenticationDAO"></property>
 	</bean>
 
-	<bean id="authenticationDAO"
-		class="com.devstringx.pmt.security.AuthenticationDAO">
+	<bean id="authenticationDAO" class="com.spring.security.security.AuthenticationDAO">
 		<property name="sessionFactory" ref="secSessionFactory"></property>
 	</bean>
 	<bean id="webSecurityExpressionHandler"
@@ -96,8 +86,7 @@
 	<bean id="secSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		lazy-init="true">
-		<property name="dataSource">
-			<idref bean="dataSource" />
+		<property name="dataSource" ref="dataSource">
 		</property>
 		<property name="packagesToScan">
 			<list>
@@ -122,7 +111,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:tabkids.properties</value>
+				<value>classpath:config.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -137,15 +126,14 @@
 	</bean>
 
 	<bean id="customAuthSuccessHandler"
-		class="com.devstringx.pmt.security.CustomAuthenticationSuccessHandler">
+		class="com.spring.security.security.CustomAuthenticationSuccessHandler">
 	</bean>
 
 	<bean id="customAuthFailureHandler"
-		class="com.devstringx.pmt.security.CustomAuthenticationFailureHandler">
+		class="com.spring.security.security.CustomAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/login.htm?login_error=1"></property>
 	</bean>
-	<bean id="customLogoutSuccessHandler"
-		class="com.devstringx.pmt.security.CustomLogoutSuccessHandler">
+	<bean id="customLogoutSuccessHandler" class="com.spring.security.security.CustomLogoutSuccessHandler">
 		<property name="defaultTargetUrl" value="/login.htm"></property>
 	</bean>
 
