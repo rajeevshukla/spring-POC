@@ -1,4 +1,4 @@
-package com.devstringx.pmt.security;
+package com.spring.security.security;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,7 +7,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devstringx.pmt.domain.common.UserDetailsDTO;
+import com.spring.security.domain.common.UserDetailsDTO;
+
 
 
 

@@ -1,4 +1,4 @@
-package com.devstringx.pmt.utils;
+package com.spring.security.utils;
 
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 

@@ -1,4 +1,4 @@
-package com.devstringx.pmt.security;
+package com.spring.security.security;
 
 import java.io.IOException;
 

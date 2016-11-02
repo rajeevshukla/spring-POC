@@ -1,4 +1,4 @@
-package com.devstringx.pmt.security;
+package com.spring.security.security;
 
 import java.util.Date;
 
@@ -9,7 +9,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.devstringx.pmt.domain.common.UserDetailsDTO;
+import com.spring.security.domain.common.UserDetailsDTO;
+
 
 
 

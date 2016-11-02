@@ -34,6 +34,7 @@
 		<property name="driverClassName" value="${${db.dbType}.driverClass}"></property>
 		<property name="username" value="${${db.dbType}.username}"></property>
 		<property name="password" value="${${db.dbType}.password}"></property>
+		<property name="url" value="${${db.dbType}.connectionUrl}"></property>
 	</bean>
 
 	<bean id="sessionFactory"

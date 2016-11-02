@@ -1,4 +1,4 @@
-package com.devstringx.pmt.domain.common;
+package com.spring.security.domain.common;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

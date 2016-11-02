@@ -1,5 +1,5 @@
 
-package com.devstringx.pmt.domain.common;
+package com.spring.security.domain.common;
 
 import java.io.Serializable;
 import java.util.Arrays;
