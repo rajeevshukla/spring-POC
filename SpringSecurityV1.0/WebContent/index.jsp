@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Welcome   ${pageContext.request.remoteUser}
+  <h1>Welcome to first spring security app.</h1>
+  
+   <h3>To run this application type 'login' in address bar after context root</h3>
 </body>
 </html>
