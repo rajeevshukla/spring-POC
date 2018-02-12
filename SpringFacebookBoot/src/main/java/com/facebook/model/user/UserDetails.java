@@ -1,11 +1,14 @@
 package com.facebook.model.user;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.web.util.RedirectUrlBuilder;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 	
@@ -24,7 +27,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
 	private boolean accountNonExpired;
 	private Collection<RoleDetails> authorities = new HashSet<>();
 
-	@Override
+	@ManyToMany(targetEntity=RoleDetails.class,fetch=FetchType.EAGER)
+	@JoinTable(name="USER_ROLE_MAPPING",inverseJoinColumns=@JoinColumn(name="ROLE_NAME"),joinColumns=@JoinColumn())
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
