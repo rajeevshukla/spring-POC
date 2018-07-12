@@ -10,4 +10,6 @@ public class SpringRabbitDatarecieverApplication {
 		SpringApplication.run(SpringRabbitDatarecieverApplication.class, args);
 	} 
 	
+	
+	
 }
