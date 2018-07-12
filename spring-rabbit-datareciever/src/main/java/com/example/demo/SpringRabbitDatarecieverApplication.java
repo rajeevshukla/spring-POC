@@ -8,5 +8,6 @@ public class SpringRabbitDatarecieverApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRabbitDatarecieverApplication.class, args);
-	}
+	} 
+	
 }
